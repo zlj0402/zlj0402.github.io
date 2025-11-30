@@ -25,3 +25,23 @@ package-lock.json
 # Misc
 _sass/vendors
 assets/js/dist
+
+# -----------------------
+
+# Jekyll build output
+_site/
+
+# Local Ruby gems (optional if you use --path)
+.bundle/
+
+# Node.js dependencies (if any)
+node_modules/
+
+# Mac/Windows 系统文件
+.DS_Store
+Thumbs.db
+
+# Editor temp files
+*.swp
+*.swo
+
