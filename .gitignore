@@ -26,7 +26,7 @@ package-lock.json
 _sass/vendors
 assets/js/dist
 
-# -----------------------
+# -----------------------git
 
 # Jekyll build output
 _site/
