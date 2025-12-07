@@ -3,12 +3,8 @@
   "image": "mcr.microsoft.com/devcontainers/jekyll:2-bullseye",
 
   "mounts": [
-    "source=${env:SSH_AUTH_SOCK},target=/ssh-agent,consistency=cached"
+    "source=/home/zlj/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached"
   ],
-  "remoteUser": "vscode",
-  "containerEnv": {
-    "SSH_AUTH_SOCK": "/ssh-agent"
-  },
 
   "onCreateCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
   "postCreateCommand": "bash .devcontainer/post-create.sh",
