@@ -1,8 +1,8 @@
 ---
 title: "VMware Workstation 中扩展 Ubuntu 虚拟机硬盘容量 -- 命令行方式"
 date: 2025-12-09 10:00:00 +0800
-categories: [Windows, Tools, VMware Workstation]
-permalink: /posts/Windows/Tools/VMware-Workstation/
+categories: [OS, Windows, Tools, VMware Workstation]
+permalink: /posts/OS/Windows/Tools/VMware-Workstation/
 ---
 
 &emsp;&emsp;本篇 note 不适用于 `LVM` (Logical Volume Manager) 类型的扩容，怎么判断自己的 Ubuntu 是否是 LVM 类型的呢，终端执行 `lsblk`，如果你看到某个分区格式（TYPE 字段列）显示为：
