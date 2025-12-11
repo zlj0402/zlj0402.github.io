@@ -8,6 +8,7 @@ permalink: /posts/OS/Windows/Tools/VMware-Workstation/Extend-Disk-Capacity.html
 * TOC
 {:toc}
 
+---
 
 &emsp;&emsp;本篇 note 不适用于 `LVM` (Logical Volume Manager) 类型的扩容，怎么判断自己的 Ubuntu 是否是 LVM 类型的呢，终端执行 `lsblk`，如果你看到某个分区格式（TYPE 字段列）显示为：
 ```
@@ -143,7 +144,7 @@ sudo fdisk -l
 ```
 
 确认磁盘 `/dev/sda` 的布局：
-
+<a id="fdisk_l"></a>
 ```
 Device     Boot   Start      End  Sectors  Size Id Type
 /dev/sda1  *       2048  1050623  1048576  512M  b W95 FAT32
@@ -154,6 +155,9 @@ Device     Boot   Start      End  Sectors  Size Id Type
 + `/dev/sda2`：扩展分区，包含 `sda5`。
 + `/dev/sda5`：Linux 根分区（挂载到 `/`），大小为 19.5GB。
 + 剩余空间未分配，可用于扩展
+
++ [穿梭机 - 回到创建扩展分区](#extend)
++ [穿梭机 - 回到创建逻辑分区](#logical)
 
 **逻辑分区和扩展分区：**
 <br>&emsp;&emsp;**`sda5`** 位于扩展分区（`sda2`）中，这是因为在 MBR（主引导记录）分区表中，一个磁盘最多只能有四个主分区。如果需要更多分区，就需要使用扩展分区来容纳逻辑分区，`sda5` 就是这样一个逻辑分区，它被包含在 `sda2`（扩展分区）中。
@@ -217,6 +221,7 @@ Partition type
 ```bash
 Partition number (2-4, default 2): <Enter>
 ```
+<a id="extend"></a>
 4. 选择扩展分区的起始扇区和结束扇区：
 ```bash
 First sector (1052670-..., default 1052670): <回车>
@@ -224,7 +229,7 @@ Last sector, +sectors or +size{K,M,G,T} (1052670-..., default ...): <回车>
 ```
 ---
 + 起始扇区：一般按默认值（直接回车）。
-  + 起始扇区要与之前的扩展分区一致。例如，之前扩展分区的起始扇区为 `1052670`，则输入此值。如果不确定，可以参考你之前记录的起始扇区。
+  + 起始扇区要与[之前的扩展分区一致](#fdisk_l)。例如，之前扩展分区的起始扇区为 `1052670`，则输入此值。如果不确定，可以参考你之前记录的起始扇区。
   + 如果起始扇区默认正确，直接按回车。
   ```bash
   First sector (xxxx-xxxx, default 1052670): 1052670
@@ -261,13 +266,14 @@ Last sector, +sectors or +size{K,M,G,T} (1052670-..., default ...): <回车>
   Partition number (5-...): 5
   ```
 
+<a id="logical"></a>
 4. 选择逻辑分区的起始扇区和结束扇区：
   ```bash
   First sector (1052672-..., default 1052672): <回车>
   Last sector, +sectors or +size{K,M,G,T} (1052672-..., default ...): <回车>
   ```
   + 起始扇区：按默认值（直接回车）。
-    <br>起始扇区必须与之前的 `sda5` 保持一致。例如，之前的起始扇区为 1052672，则输入此值。
+    <br>起始扇区必须与之前的 `sda5` [保持一致](#fdisk_l)。例如，之前的起始扇区为 1052672，则输入此值。
     <br>如果起始扇区默认正确，直接回车。
     ```bash
     First sector (1052672-xxxx, default 1052672): 1052672
