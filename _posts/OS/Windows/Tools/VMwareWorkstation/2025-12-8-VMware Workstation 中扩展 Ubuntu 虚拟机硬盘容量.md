@@ -2,8 +2,12 @@
 title: "VMware Workstation 中扩展 Ubuntu 虚拟机硬盘容量 -- 命令行方式"
 date: 2025-12-09 10:00:00 +0800
 categories: [OS, Windows, Tools, VMware Workstation]
-permalink: /posts/OS/Windows/Tools/VMware-Workstation/
+permalink: /posts/OS/Windows/Tools/VMware-Workstation/Extend-Disk-Capacity.html
 ---
+
+* TOC
+{:toc}
+
 
 &emsp;&emsp;本篇 note 不适用于 `LVM` (Logical Volume Manager) 类型的扩容，怎么判断自己的 Ubuntu 是否是 LVM 类型的呢，终端执行 `lsblk`，如果你看到某个分区格式（TYPE 字段列）显示为：
 ```
@@ -39,7 +43,7 @@ tmpfs           388M  1.9M  386M   1% /run
 ## 1. 扩容前准备: 通过 SSH 服务连通 Windows 主机和 Ubuntu 虚拟机
 <details>
 <summary>personal exp.</summary>
-+ 两次的扩容经历，发现在扩展分区，重启虚拟机之后，每次 VMware Workstation 的虚拟机界面都是黑屏的；<br>
++ 两次的扩容经历，发现在扩展分区，重启虚拟机之后，每次 VMware Workstation 的虚拟机界面都是黑屏的;<br>
 + 好在第一次扩容之前，自己就有通过 SSH 服务连通了我的 windows 主机和 Ubuntu 虚拟机，可以继续进行命令行的操作；
 </details>
 
@@ -61,8 +65,10 @@ tmpfs           388M  1.9M  386M   1% /run
 ### 2.1 删除快照
 虚拟机设置中，扩展（Extend）按键能够被点击有两个必要条件：
 1. 虚拟机关机
-2. 没有快照<br>
-不然就是灰色的，不能点击；
+2. 没有快照
+   
+---
+快照删除：选择**虚拟机**菜单栏 -> **快照**菜单项 -> **快照管理器** -> 选择快照，删除
 
 
 ### 2.2 备份
@@ -99,7 +105,6 @@ D:\Program Files (x86)\VMwares\ubuntu20.04.5\
 + detail:
   - **打开 VMware Workstation** 并选择要调整的虚拟机。
   - **虚拟机关机**（确保处于关机状态，而非休眠）。
-  - 选择**虚拟机**菜单栏 -> **快照**菜单项 -> **快照管理器** -> 选择快照，删除（无快照跳过此步骤）
   - 进入 **设置**：
       - 在虚拟机选项卡中，点击 **Edit virtual machine settings** 或右键虚拟机，选择 **Settings**。
   - 在设置窗口中，选择 **Hard Disk**。
@@ -114,10 +119,12 @@ D:\Program Files (x86)\VMwares\ubuntu20.04.5\
 
 #### 3.2.1 登录虚拟机后，运行以下命令查看磁盘大小：
 
+其实我点击打开虚拟机，虽然有系统启动的过程，但是之后屏幕就是黑的，进不去，试了下 MobaXterm 之前建立的连接还在，能够用命令进行操作；(这就是需要第 1 步的原因)
+
 ```bash
 lsblk
 ```
-查看是否有未分配的额外空间（通常以 sda 或其他设备名称显示）。
+查看是否有未分配的额外空间（通常以 `sda` 或其他设备名称显示）。
 ```bash
 # 此时查看磁盘空间是有60G的，不过磁盘分区还是20G左右的原来大小
 # ...
@@ -127,17 +134,15 @@ sda      8:0    0    60G  0 disk
 └─sda5   8:5    0  19.5G  0 part /
 # ...
 ```
-其实我点击打开虚拟机，虽然有系统启动的过程，但是之后屏幕就是黑的，进不去，试了下 MobaXterm 之前建立的连接还在，能够用命令进行操作；(这就是需要第 1 步的原因)
 
+确认了磁盘 `/dev/sda` 的总大小为 60GB，还有 40G 的空间未被分配。
 
-#### 3.2.2 手动分区和扩展
----
-##### 3.2.2.1 查看当前分区表
+#### 3.2.2 查看当前分区表
 ```bash
 sudo fdisk -l
 ```
 
-确认磁盘 /dev/sda 的总大小为 60GB，以及是否有未分配的空间。
+确认磁盘 `/dev/sda` 的布局：
 
 ```
 Device     Boot   Start      End  Sectors  Size Id Type
@@ -145,7 +150,6 @@ Device     Boot   Start      End  Sectors  Size Id Type
 /dev/sda2       1052670 41940991 40888322 19.5G  5 Extended
 /dev/sda5       1052672 41940991 40888320 19.5G 83 Linux
 ```
-磁盘 `/dev/sda` 的布局如下：
 + `/dev/sda1`：启动分区（EFI分区），大小为 512MB。
 + `/dev/sda2`：扩展分区，包含 `sda5`。
 + `/dev/sda5`：Linux 根分区（挂载到 `/`），大小为 19.5GB。
@@ -163,9 +167,7 @@ Device     Boot   Start      End  Sectors  Size Id Type
 &emsp;&emsp;目标是将未分配的空间添加到 `sda5`（根分区）。由于 `sda5` 位于扩展分区中，需要通过调整分区的大小来完成扩展。
 
 
-##### 3.2.2.2 扩展分区 -- 使用命令行工具
----
-###### 3.2.2.2.1 删除扩展分区和逻辑分区：
+#### 3.2.3 删除扩展分区和逻辑分区：
 
 这个操作会稍微复杂一点，需要确保原 `sda5` 的起始位置不变。
 + 运行 `fdisk` 来修改分区表：
@@ -196,9 +198,7 @@ Device     Boot   Start      End  Sectors  Size Id Type
     + 第一次输入d，输入 5，删除了 sda5
     + 再输入d，输入 2，删除了 sda2
 
-###### 3.2.2.2.2 重新创建分区
----
-####### 3.2.2.2.2.1 创建**扩展分区**
+#### 3.2.4 重新创建**扩展分区**
 
 由于你需要在扩展分区内创建逻辑分区，你需要先创建一个 扩展分区（e）。<br>
 1. 输入 n（new）创建一个新分区。
@@ -237,7 +237,7 @@ Last sector, +sectors or +size{K,M,G,T} (1052670-..., default ...): <回车>
 5. 扩展分区创建完成后，fdisk 会提示已创建。
 
 ---
-####### 3.2.2.2.2.2 创建**逻辑分区**
+#### 3.2.5 重新创建**逻辑分区**
 
 扩展分区内可以创建一个或多个逻辑分区。接着创建 逻辑分区（n）。
 
@@ -283,7 +283,7 @@ Last sector, +sectors or +size{K,M,G,T} (1052670-..., default ...): <回车>
 6. 确认逻辑分区创建完成后，输入 p 查看分区表。
 
 ---
-####### 3.2.2.2.2.3 检查新分区表 & 写入更改
+#### 3.2.6 检查新分区表 & 写入更改
 
 1. 检查新的分区表 
   <br>在完成所有分区后，输入 p 打印当前分区表，确认分区配置是否符合你的预期。
