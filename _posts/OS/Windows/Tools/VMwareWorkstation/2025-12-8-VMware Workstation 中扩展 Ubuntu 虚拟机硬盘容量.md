@@ -2,12 +2,8 @@
 title: "VMware Workstation 中扩展 Ubuntu 虚拟机硬盘容量 -- 命令行方式"
 date: 2025-12-09 10:00:00 +0800
 categories: [OS, Windows, Tools, VMware Workstation]
-permalink: /posts/OS/Windows/Tools/VMware-Workstation/Extend-Disk-Capacity.html
----
-
-* TOC
-{:toc}
-
+permalink: /posts/OS/Windows/Tools/VMware-Workstation/VMware Workstation 中扩展 Ubuntu 虚拟机硬盘容量
+toc: true
 ---
 
 &emsp;&emsp;本篇 note 不适用于 `LVM` (Logical Volume Manager) 类型的扩容，怎么判断自己的 Ubuntu 是否是 LVM 类型的呢，终端执行 `lsblk`，如果你看到某个分区格式（TYPE 字段列）显示为：
@@ -144,7 +140,7 @@ sudo fdisk -l
 ```
 
 确认磁盘 `/dev/sda` 的布局：
-<a id="fdisk_l"></a>
+<span id="fdisk_l"></span>
 ```
 Device     Boot   Start      End  Sectors  Size Id Type
 /dev/sda1  *       2048  1050623  1048576  512M  b W95 FAT32
@@ -221,7 +217,7 @@ Partition type
 ```bash
 Partition number (2-4, default 2): <Enter>
 ```
-<a id="extend"></a>
+<span id="extend"></span>
 4. 选择扩展分区的起始扇区和结束扇区：
 ```bash
 First sector (1052670-..., default 1052670): <回车>
@@ -266,7 +262,7 @@ Last sector, +sectors or +size{K,M,G,T} (1052670-..., default ...): <回车>
   Partition number (5-...): 5
   ```
 
-<a id="logical"></a>
+<span id="logical"></span>
 4. 选择逻辑分区的起始扇区和结束扇区：
   ```bash
   First sector (1052672-..., default 1052672): <回车>
@@ -346,5 +342,4 @@ Last sector, +sectors or +size{K,M,G,T} (1052670-..., default ...): <回车>
 
 6. reboot & 验证
    1. `reboot` 重启 Ubuntu 虚拟机
-   2. 命令 `df -h` 验证区数据完好，文件系统已扩展到 59.5GB。
-   3. 如果分区能够正常挂载并访问，则操作成功。
+   2. 如果分区能够正常挂载并访问，则操作成功。
