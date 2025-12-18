@@ -16,7 +16,7 @@ timezone: Asia/Shanghai
 
 title: Mar. # the main title
 
-tagline: Life’s a game—I’m a traveler and gamer. # it will display as the subtitle
+tagline: Life is a journey we travel, a game we play. # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
   A minimal, responsive and feature-rich Jekyll theme for technical writing.

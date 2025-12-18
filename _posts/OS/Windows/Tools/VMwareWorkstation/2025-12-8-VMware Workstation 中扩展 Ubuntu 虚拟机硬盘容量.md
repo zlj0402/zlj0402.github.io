@@ -1,7 +1,8 @@
 ---
 title: "VMware Workstation 中扩展 Ubuntu 虚拟机硬盘容量 -- 命令行方式"
 date: 2025-12-09 10:00:00 +0800
-categories: [OS, Windows, Tools, VMware Workstation]
+categories: [Tools, VMware Workstation]
+tag: [Tools, VMware Workstation]
 permalink: /posts/OS/Windows/Tools/VMware-Workstation/VMware Workstation 中扩展 Ubuntu 虚拟机硬盘容量
 ---
 
