@@ -3,7 +3,8 @@
   "image": "mcr.microsoft.com/devcontainers/jekyll:2-bullseye",
 
   "mounts": [
-    "source=/home/zlj/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached"
+    // "source=/home/zlj/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached"
+    "source=${env:USERPROFILE}\\.ssh,target=/home/vscode/.ssh,type=bind"
   ],
 
   "onCreateCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
