@@ -4,7 +4,9 @@
 
   "mounts": [
     // "source=/home/zlj/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached"
-    "source=${env:USERPROFILE}\\.ssh,target=/home/vscode/.ssh,type=bind"
+
+    // "source=${env:USERPROFILE}\\.ssh,target=/home/vscode/.ssh,type=bind" // sometimes error because the \.ssh
+    "source=${env:HOME}/.ssh,target=/home/vscode/.ssh,type=bind"
   ],
 
   "onCreateCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
