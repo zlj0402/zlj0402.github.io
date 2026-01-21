@@ -102,15 +102,15 @@ permalink: /posts/Languages/C++/八部曲
 
 + 《C++ Primer 中文版（第5版）》-- Stanley B. Lippman, Josée Lajoie, Barbara E. Moo
 
-![C++ Primer](https://gitee.com/zlj0402/blog_image/raw/master/posts/Languages/cplusplus/Eight_Part_Series/Advanced_Object_Oriented_Programming_in_Cplusplus_Part_1/CplusplusPrimer.jpg)
+![C++ Primer](/assets/img/Languages/C++/HouJie_Eight_Part_Series/2026-01-05-Advanced_Object_Oriented_Programming_in_C++_Part_1/C++Primer.jpg){: width="180" height="239"}
 _《C++ Primer》-- C++ 的第一个编译器的作者所写的书籍_
-
-<img src="https://gitee.com/zlj0402/blog_image/raw/master/posts/Languages/cplusplus/Eight_Part_Series/Advanced_Object_Oriented_Programming_in_Cplusplus_Part_1/CplusplusPrimer.jpg" alt="C++ Primer">
-
 
 这本书是 C++ 入门的经典书籍，当然现在已经出了第 5 版了。它的内容呢？是从最基础的 C++ 语言开始讲起，然后慢慢地深入到面向对象的部分。
 
 + 《The C++ PROGRAMMING LANGUAGE》-- C++ 之父
+
+![The C++ PROGRAMMING LANGUAGE](/assets/img/Languages/C++/HouJie_Eight_Part_Series/2026-01-05-Advanced_Object_Oriented_Programming_in_C++_Part_1/The_C++_PROGRAMMING_LANGUAGE.jpg){: width="180" height="239"}
+_《The C++ PROGRAMMING LANGUAGE》-- C++ 之父 Bjarne Stroustrup 所写的书籍_
 
 那毕竟我们这课程里面涵盖的是非常还算是非常小的一部分，你还是需要更多的这方面的信息。这边有本书，可以对大家带来很好的帮助。
 
