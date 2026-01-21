@@ -101,7 +101,8 @@ permalink: /posts/Languages/C++/八部曲
 ### **Bibliography (书目誌)**
 
 + 《C++ Primer 中文版（第5版）》-- Stanley B. Lippman, Josée Lajoie, Barbara E. Moo
-![C++ Primer](https://gitee.com/zlj0402/blog_image/raw/bc704017d03f9fee5335b5a44618a257e98b8d0a/posts/Languages/C++/%E5%85%AB%E9%83%A8%E6%9B%B2/C++%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B_%E4%B8%8A/C++Primer.jpg){：width="320" height="421"}
+
+![C++ Primer](https://gitee.com/zlj0402/blog_image/raw/master/posts/Languages/cplusplus/Eight_Part_Series/Advanced_Object_Oriented_Programming_in_Cplusplus_Part_1/C++Primer.jpg)
 _《C++ Primer》-- C++ 的第一个编译器的作者所写的书籍_
 
 这本书是 C++ 入门的经典书籍，当然现在已经出了第 5 版了。它的内容呢？是从最基础的 C++ 语言开始讲起，然后慢慢地深入到面向对象的部分。
