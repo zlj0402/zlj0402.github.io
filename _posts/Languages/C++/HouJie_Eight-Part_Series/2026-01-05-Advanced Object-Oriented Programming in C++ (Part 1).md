@@ -105,6 +105,9 @@ permalink: /posts/Languages/C++/八部曲
 ![C++ Primer](https://gitee.com/zlj0402/blog_image/raw/master/posts/Languages/cplusplus/Eight_Part_Series/Advanced_Object_Oriented_Programming_in_Cplusplus_Part_1/CplusplusPrimer.jpg)
 _《C++ Primer》-- C++ 的第一个编译器的作者所写的书籍_
 
+<img src="https://gitee.com/zlj0402/blog_image/raw/master/posts/Languages/cplusplus/Eight_Part_Series/Advanced_Object_Oriented_Programming_in_Cplusplus_Part_1/CplusplusPrimer.jpg" alt="C++ Primer">
+
+
 这本书是 C++ 入门的经典书籍，当然现在已经出了第 5 版了。它的内容呢？是从最基础的 C++ 语言开始讲起，然后慢慢地深入到面向对象的部分。
 
 + 《The C++ PROGRAMMING LANGUAGE》-- C++ 之父
