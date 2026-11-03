@@ -45,3 +45,20 @@ Thumbs.db
 *.swp
 *.swo
 
+
+.claude/*
+
+# 取消忽略目录本身
+!.claude/skills/
+# 取消忽略具体内容
+!.claude/skills/**
+
+!.claude/**/memory/
+!.claude/**/*.md
+!.claude/projects/*/MEMORY.md
+!.claude/settings.local.json.template
+!.claude/README.md
+# Ignore large conversation history files
+.claude/**/*.jsonl 
+
+.vscode/*
